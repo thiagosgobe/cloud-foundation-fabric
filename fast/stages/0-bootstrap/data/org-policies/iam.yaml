@@ -23,16 +23,7 @@ iam.allowedPolicyMemberDomains:
     - allow:
         values:
           - is:${organization.customer_id}
-      condition:
-        title: Restrict member domains
-        expression: |
-          !resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
-    - allow:
-        all: true
-      condition:
-        title: Allow any member domain
-        expression: |
-          resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+          - is:principalSet://iam.googleapis.com/organizations/${organization.id}
 
 iam.automaticIamGrantsForDefaultServiceAccounts:
   rules:
